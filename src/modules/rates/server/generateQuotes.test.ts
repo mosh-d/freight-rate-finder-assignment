@@ -77,7 +77,7 @@ describe("generateQuotes — output invariants", () => {
 
 describe("generateQuotes — simulation triggers", () => {
   it("throws a simulated upstream error for the error trigger destination, any casing", () => {
-    for (const destination of [UPSTREAM_ERROR_TRIGGER, "Atlantis"]) {
+    for (const destination of [UPSTREAM_ERROR_TRIGGER, "Jupiter"]) {
       expect(() => generateQuotes(searchWith({ destination }))).toThrow(
         SimulatedUpstreamError,
       );

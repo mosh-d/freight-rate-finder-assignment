@@ -1,8 +1,8 @@
 import type { Quote, RateSearch } from "../types";
 
 // Documented simulation triggers (matched case-insensitively on destination):
-// searching to Atlantis fails like an upstream outage, Nowhere returns no quotes.
-export const UPSTREAM_ERROR_TRIGGER = "atlantis";
+// searching to Jupiter fails like an upstream outage, Nowhere returns no quotes.
+export const UPSTREAM_ERROR_TRIGGER = "jupiter";
 export const EMPTY_RESULTS_TRIGGER = "nowhere";
 
 export class SimulatedUpstreamError extends Error {
@@ -70,6 +70,11 @@ const cargoScale = (cargo: RateSearch["cargo"]): number =>
       ? cargo.quantity * (cargo.size === "40ft" ? 1.75 : 1)
       : cargo.pieces * 0.05 + cargo.totalWeightKg / 500,
   );
+
+// Even the simulated network latency is derived from the search, so response
+// timing is as reproducible as the quotes themselves (400–900 ms).
+export const simulatedLatencyMs = (search: RateSearch): number =>
+  400 + (fnv1a(searchKey(search)) % 501);
 
 export const generateQuotes = (search: RateSearch): Quote[] => {
   const destination = search.destination.toLowerCase();
