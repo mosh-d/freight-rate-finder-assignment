@@ -28,7 +28,7 @@ export default function QuoteCard({ quote }: QuoteCardProps) {
             <p className="text-xs font-mono uppercase tracking-wider text-secondary mb-1">
               {quote.carrier}
             </p>
-            <p className="text-sm text-primary-dark/80">
+            <p className="text-sm text-secondary">
               {quote.transitDays} {quote.transitDays === 1 ? "day" : "days"}
             </p>
           </div>
@@ -45,7 +45,7 @@ export default function QuoteCard({ quote }: QuoteCardProps) {
           </div>
         </div>
       </summary>
-      <div className="p-4 pt-0 border-t border-secondary-light">
+      <div className="p-4 border-t border-secondary-light">
         <PriceBreakdown quote={quote} />
       </div>
     </details>

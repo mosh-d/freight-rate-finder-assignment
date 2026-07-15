@@ -18,7 +18,7 @@ export default function ContainerFields() {
 
   return (
     <div className="space-y-4 border-1 border-secondary-light rounded-lg p-4 bg-secondary-light/10">
-      <div className="h-[4rem]">
+      <div className="min-h-16">
         <label className="block text-xs font-mono uppercase tracking-wider text-secondary mb-2">
           Container Size
         </label>
@@ -36,7 +36,7 @@ export default function ContainerFields() {
         )}
       </div>
 
-      <div className="h-[4rem]">
+      <div className="min-h-16">
         <label className="block text-xs font-mono uppercase tracking-wider text-secondary mb-2">
           Quantity
         </label>

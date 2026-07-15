@@ -41,7 +41,7 @@ export default function RatesPage() {
             {data && data.quotes.length === 0 && <QuotesEmpty />}
             {data && data.quotes.length > 0 && <QuoteList quotes={data.quotes} />}
             {!search && !isLoading && (
-              <div className="text-center py-12 text-zinc-500">
+              <div className="text-center py-12 text-primary-dark/50">
                 <p>Enter search parameters to see quotes</p>
               </div>
             )}

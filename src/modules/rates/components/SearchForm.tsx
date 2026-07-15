@@ -53,7 +53,7 @@ export default function SearchForm({ defaultValues, onSubmit }: SearchFormProps)
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-6">
         <div className="space-y-4">
-          <div className="h-[4rem]">
+          <div className="min-h-16">
             <label className="block text-xs font-mono uppercase tracking-wider text-secondary mb-2">
               Origin
             </label>
@@ -70,7 +70,7 @@ export default function SearchForm({ defaultValues, onSubmit }: SearchFormProps)
             )}
           </div>
 
-          <div className="h-[4rem]">
+          <div className="min-h-16">
             <label className="block text-xs font-mono uppercase tracking-wider text-secondary mb-2">
               Destination
             </label>
@@ -87,7 +87,7 @@ export default function SearchForm({ defaultValues, onSubmit }: SearchFormProps)
             )}
           </div>
 
-          <div className="h-[4rem]">
+          <div className="min-h-16">
             <label className="block text-xs font-mono uppercase tracking-wider text-secondary mb-2">
               Ship Date
             </label>

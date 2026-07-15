@@ -21,13 +21,13 @@ export default function PriceBreakdown({ quote }: PriceBreakdownProps) {
     <dl className="space-y-2 text-sm">
       {quote.lineItems.map((item, index) => (
         <div key={index} className="flex justify-between">
-          <dt className="text-primary-dark/80">{item.label}</dt>
-          <dd className="font-medium text-primary-dark">{formatCurrency(item.amountCents)}</dd>
+          <dt className="text-secondary-dark/80">{item.label}</dt>
+          <dd className="font-medium text-secondary-dark">{formatCurrency(item.amountCents)}</dd>
         </div>
       ))}
-      <div className="flex justify-between pt-2 border-t border-primary-light mt-2">
-        <dt className="font-semibold text-primary-dark">Total</dt>
-        <dd className="font-semibold text-primary-dark">
+      <div className="flex justify-between pt-2 border-t border-secondary-light mt-2">
+        <dt className="font-semibold text-secondary-dark">Total</dt>
+        <dd className="font-semibold text-secondary-dark">
           {formatCurrency(quote.totalCents)}
         </dd>
       </div>
