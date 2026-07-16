@@ -37,7 +37,7 @@ export default function FormField<TFieldValues extends FieldValues>({
   className,
 }: FormFieldProps<TFieldValues>) {
   const baseClassName =
-    "w-full px-3 py-2 border rounded-sm border-secondary-light focus:border-2 focus:bg-secondary-light/10 focus:outline-none transition-all text-sm text-secondary placeholder:text-secondary-light";
+    "w-full min-h-10 px-3 py-2 border rounded-sm border-secondary-light focus:border-2 focus:bg-secondary-light/10 focus:outline-none transition-all text-sm text-secondary placeholder:text-secondary-light box-border";
 
   const interactiveClassName =
     type === "select" || type === "date"
@@ -47,7 +47,7 @@ export default function FormField<TFieldValues extends FieldValues>({
   const fieldClassName = `${baseClassName}${interactiveClassName} ${className ?? ""}`.trim();
 
   return (
-    <div className="min-h-16">
+    <div className="space-y-2">
       <label className="block text-xs font-mono uppercase tracking-wider text-secondary mb-2">
         {label}
       </label>
