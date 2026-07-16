@@ -11,6 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { rateSearchSchema } from "../schemas";
 import type { RateSearch, RateSearchInput } from "../types";
 import CargoModeCard from "./CargoModeCard";
+import FormField from "./shared/FormField";
 
 interface SearchFormProps {
   defaultValues?: Partial<RateSearch>;
@@ -53,56 +54,32 @@ export default function SearchForm({ defaultValues, onSubmit }: SearchFormProps)
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-6">
         <div className="space-y-4">
-          <div className="min-h-16">
-            <label className="block text-xs font-mono uppercase tracking-wider text-secondary mb-2">
-              Origin
-            </label>
-            <input
-              type="text"
-              {...register("origin")}
-              className="w-full px-3 py-2 border-1 rounded-sm border-secondary-light focus:border-2 focus:outline-none focus:bg-secondary-light/10 transition-colors text-sm text-secondary placeholder:text-secondary-light"
-              placeholder="Enter origin city or port"
-            />
-            {errors.origin && (
-              <p className="text-red-600 text-xs mt-1">
-                {errors.origin.message?.toString()}
-              </p>
-            )}
-          </div>
+          <FormField<RateSearchInput>
+            label="Origin"
+            name="origin"
+            register={register}
+            type="text"
+            placeholder="Enter origin city or port"
+            error={errors.origin?.message?.toString()}
+          />
 
-          <div className="min-h-16">
-            <label className="block text-xs font-mono uppercase tracking-wider text-secondary mb-2">
-              Destination
-            </label>
-            <input
-              type="text"
-              {...register("destination")}
-              className="w-full px-3 py-2 border-1 rounded-sm border-secondary-light focus:border-2 focus:bg-secondary-light/10 focus:outline-none transition-colors text-sm text-secondary placeholder:text-secondary-light"
-              placeholder="Enter destination city or port"
-            />
-            {errors.destination && (
-              <p className="text-red-600 text-xs mt-1">
-                {errors.destination.message?.toString()}
-              </p>
-            )}
-          </div>
+          <FormField<RateSearchInput>
+            label="Destination"
+            name="destination"
+            register={register}
+            type="text"
+            placeholder="Enter destination city or port"
+            error={errors.destination?.message?.toString()}
+          />
 
-          <div className="min-h-16">
-            <label className="block text-xs font-mono uppercase tracking-wider text-secondary mb-2">
-              Ship Date
-            </label>
-            <input
-              type="date"
-              {...register("shipDate")}
-              min={tomorrowString}
-              className="w-full px-3 py-2 border-1 rounded-sm border-secondary-light focus:border-2 focus:bg-secondary-light/10 focus:bg-secondary-light/10 focus:outline-none transition-colors text-sm text-secondary placeholder:text-secondary-light"
-            />
-            {errors.shipDate && (
-              <p className="text-red-600 text-xs mt-1">
-                {errors.shipDate.message?.toString()}
-              </p>
-            )}
-          </div>
+          <FormField<RateSearchInput>
+            label="Ship Date"
+            name="shipDate"
+            register={register}
+            type="date"
+            min={tomorrowString}
+            error={errors.shipDate?.message?.toString()}
+          />
         </div>
 
         <div>

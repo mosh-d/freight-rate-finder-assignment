@@ -2,10 +2,11 @@
 // (20ft / 40ft — select or segmented control) and quantity (number input,
 // min 1). Inline errors per field.
 import { useFormContext, useFormState, type FieldErrors } from "react-hook-form";
-import type { Cargo } from "../types";
+import type { Cargo, RateSearchInput } from "../types";
+import FormField from "./shared/FormField";
 
 export default function ContainerFields() {
-  const { register, control } = useFormContext();
+  const { register, control } = useFormContext<RateSearchInput>();
   // useFormState subscribes this component to error changes; reading errors
   // off the context froze under React Compiler memoization.
   const { errors } = useFormState({ control });
@@ -18,42 +19,28 @@ export default function ContainerFields() {
 
   return (
     <div className="space-y-4 border-1 border-secondary-light rounded-lg p-4 bg-secondary-light/10">
-      <div className="min-h-16">
-        <label className="block text-xs font-mono uppercase tracking-wider text-secondary mb-2">
-          Container Size
-        </label>
-        <select
-          {...register("cargo.size")}
-          className="w-full px-3 py-2 border-1 rounded-sm border-secondary-light focus:border-2 focus:bg-secondary-light/10 focus:outline-none hover:cursor-pointer transition-all text-sm"
-        >
-          <option value="20ft">20ft</option>
-          <option value="40ft">40ft</option>
-        </select>
-        {cargoErrors?.size && (
-          <p className="text-red-600 text-xs mt-1">
-            {cargoErrors.size.message?.toString()}
-          </p>
-        )}
-      </div>
+      <FormField<RateSearchInput>
+        label="Container Size"
+        name="cargo.size"
+        register={register}
+        type="select"
+        options={[
+          { value: "20ft", label: "20ft" },
+          { value: "40ft", label: "40ft" },
+        ]}
+        error={cargoErrors?.size?.message?.toString()}
+      />
 
-      <div className="min-h-16">
-        <label className="block text-xs font-mono uppercase tracking-wider text-secondary mb-2">
-          Quantity
-        </label>
-        <input
-          type="number"
-          {...register("cargo.quantity")}
-          min={1}
-          max={500}
-          className="w-full px-3 py-2 border-1 rounded-sm border-secondary-light focus:border-2 focus:outline-none focus:bg-secondary-light/10 transition-colors text-sm placeholder:text-secondary-light"
-          placeholder="Enter quantity"
-        />
-        {cargoErrors?.quantity && (
-          <p className="text-red-600 text-xs mt-1">
-            {cargoErrors.quantity.message?.toString()}
-          </p>
-        )}
-      </div>
+      <FormField<RateSearchInput>
+        label="Quantity"
+        name="cargo.quantity"
+        register={register}
+        type="number"
+        min="1"
+        max={500}
+        placeholder="Enter quantity"
+        error={cargoErrors?.quantity?.message?.toString()}
+      />
     </div>
   );
 }
